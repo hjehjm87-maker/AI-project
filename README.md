@@ -14,6 +14,9 @@ Road Damage Detection and Augmentation Analysis using YOLO11
 * 최신 실시간 객체 탐지 알고리즘인 `YOLO11 (Nano & Small)` 모델을 활용하여 주행 중 도로 파손 부위를 정확히 분류하고 탐지하는 자동화 시스템을 구축하고자 합
 * 데이터 전처리(Crop) 및 가혹 주행 환경을 모사한 **데이터 증강(Data Augmentation)** 기법이 객체 탐지 성능 지표(`mAP50`, `mAP50-95`) 개선에 미치는 영향력을 체계적으로 비교 분석하여 최적의 파이프라인을 제안
 
+### 프로젝트 파이프라인 아키텍처
+
+
 ## 2. 필요한 라이브러리 및 환경
 본 프로젝트는 구글 코랩(Google Colab - Tesla T4 GPU) 환경에서 `Ultralytics` 라이브러리를 기반으로 구현함
 * **핵심 프레임워크:** `Ultralytics YOLO11`
@@ -82,8 +85,7 @@ model_2.train(
     degrees=10.0,    # 미세 회전 강제
     translate=0.2,   # 평행 이동 변형
     name="yolo11n_augmentation"
-)
-
+    
 3차 실험 [Scale-up]:복합적인 환경과 이온 처리 성능을 극대화하기 위해 사용자가 더 확장된 YOLO11s (Small)모델로 규모를 확장하고, 하이퍼파라미터 최적화와 함께 100 Epochs의 장기적 성능을 수행
 
 비디오 인퍼런스 및 추적(Tracking) 알고리즘
