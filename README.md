@@ -56,7 +56,8 @@ names: ['Pothole', 'Crack', 'Manhole']
 ```
 
 ## 4. 모델 설명 및 개발 내용
-1차 실험 [Baseline]:가장 가벼운 YOLO11n (Nano)모델을 기반으로 하는 분석 처리 없이 기본 전 처리 데이터셋만 사용하여 50 Epochs 모델 학습을 연구하고 기준 지표를 제공
+1차 실험 [Baseline]
+가장 가벼운 YOLO11n (Nano)모델을 기반으로 하는 분석 처리 없이 기본 전 처리 데이터셋만 사용하여 50 Epochs 모델 학습을 연구하고 기준 지표를 제공
 
 python
 from ultralytics import YOLO
@@ -71,7 +72,8 @@ model_1.train(
     name="yolo11n_baseline"
 )
 
-2차 실험 [Augmentation]:약간의 상황이 발생할 수 있는 노면의 조도 및 스윙을 모사하기 위해 YOLO11n모델에 광학적 변형(명도 hsv_v=0.6, 채도 hsv_s=0.5) 및 각도 변형(회전 degrees=10.0, 전위 이동 translate=0.2) 가능성을 적용하여 50 Epochs 확장을 진행
+2차 실험 [Augmentation]
+약간의 상황이 발생할 수 있는 노면의 조도 및 스윙을 모사하기 위해 YOLO11n모델에 광학적 변형(명도 hsv_v=0.6, 채도 hsv_s=0.5) 및 각도 변형(회전 degrees=10.0, 전위 이동 translate=0.2) 가능성을 적용하여 50 Epochs 확장을 진행
 
 ### Augmentation: 조도 변화 및 가혹 주행 환경 모사를 위한 증강 파라미터 적용
 model_2 = YOLO("yolo11n.yaml")
@@ -86,7 +88,8 @@ model_2.train(
     translate=0.2,   # 평행 이동 변형
     name="yolo11n_augmentation"
     
-3차 실험 [Scale-up]:복합적인 환경과 이온 처리 성능을 극대화하기 위해 사용자가 더 확장된 YOLO11s (Small)모델로 규모를 확장하고, 하이퍼파라미터 최적화와 함께 100 Epochs의 장기적 성능을 수행
+3차 실험 [Scale-up]
+복합적인 환경과 이온 처리 성능을 극대화하기 위해 사용자가 더 확장된 YOLO11s (Small)모델로 규모를 확장하고, 하이퍼파라미터 최적화와 함께 100 Epochs의 장기적 성능을 수행
 
 비디오 인퍼런스 및 추적(Tracking) 알고리즘
 연속적인 프레임 환경에서의 탐지 누락을 방지하기 위해 학습 완료된 가중치 파일(best.pt)을 활용하여 실제 도로 주행 영상(맑은날.mp4)에 인퍼런스를 연동
