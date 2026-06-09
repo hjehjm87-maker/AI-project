@@ -36,15 +36,9 @@ nc: 3
 names: ['Pothole', 'Crack', 'Manhole']
 
 ## 4. 모델 설명 및 개발 내용
-├── 1차 실험 [Baseline] 
-│   └── YOLO11n (Nano) 모델 활용 / 기본 데이터셋 / 50 Epochs 학습
-├── 2차 실험 [Augmentation Pipeline]
-│   └── YOLO11n 모델 + 명도 조절(hsv_v=0.6), 채도 조절(hsv_s=0.5), 미세 회전(degrees=10.0), 평행 이동(translate=0.2) 적용 / 50 Epochs 학습
-└── 3차 실험 [Scale-up Model]
-    └── YOLO11s (Small)로 모델 확장 + 가중치 파라미터 최적화 / 100 Epochs 장기 학습
-1차 실험 [Baseline]: YOLO11n (Nano) 모델 / 기본 데이터셋 / 50 Epochs 학습
-2차 실험 [Augmentation]: YOLO11n (Nano) 모델 + 명도 조절(hsv_v=0.6), 채도 조절(hsv_s=0.5), 미세 회전(degrees=10.0), 평행 이동(translate=0.2) 적용 / 50 Epochs 학습
-3차 실험 [Scale-up]: YOLO11s (Small)로 가중치 모델 크기 확장 + 파라미터 최적화 / 100 Epochs 장기 학습
+1차 실험 [Baseline]:가장 가벼운 YOLO11n (Nano)모델을 기반으로 하는 분석 처리 없이 기본 전 처리 데이터셋만 사용하여 50 Epochs 모델 학습을 연구하고 기준 지표를 제공
+2차 실험 [Augmentation]:약간의 상황이 발생할 수 있는 노면의 조도 및 스윙을 모사하기 위해 YOLO11n모델에 광학적 변형(명도 hsv_v=0.6, 채도 hsv_s=0.5) 및 각도 변형(회전 degrees=10.0, 전위 이동 translate=0.2) 가능성을 적용하여 50 Epochs 확장을 진행
+3차 실험 [Scale-up]:복합적인 환경과 이온 처리 성능을 극대화하기 위해 사용자가 더 확장된 YOLO11s (Small)모델로 규모를 확장하고, 하이퍼파라미터 최적화와 함께 100 Epochs의 장기적 성능을 수행
 
 비디오 인퍼런스 및 추적(Tracking) 알고리즘
 연속적인 프레임 환경에서의 탐지 누락을 방지하기 위해 학습 완료된 가중치 파일(best.pt)을 활용하여 실제 도로 주행 영상(맑은날.mp4)에 인퍼런스를 연동
@@ -53,6 +47,14 @@ names: ['Pothole', 'Crack', 'Manhole']
 
 ## 5. 실험 결과 및 분석
 결과 요약: 2차 실험(YOLO11n + 기본 증강) 환경에서는 에포크 제한으로 일시적인 지표 둔화가 관찰되었으나, **모델 구조를 확장하고 학습 에포크를 100회로 고도화한 3차 실험(YOLO11s)**이 모든 지표에서 가장 뛰어난 성능을 기록
+
+### 📊 모델별 최종 평가 메트릭 비교 테이블
+
+| 실험 조건 (Model Architecture) | Epochs | Batch | Precision | Recall | mAP50 | mAP50-95 |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **1차: YOLO11n (Baseline)** | 50 | 16 | 0.518 | 0.467 | 0.468 | 0.201 |
+| **2차: YOLO11n (+Augmentation)** | 50 | 16 | 0.503 | 0.439 | 0.437 | 0.186 |
+| 🏆 **3차: YOLO11s (Scale-up)** | **100** | **16** | **0.547** | **0.494** | **0.492** | **0.217** |
 
 ## 6. 한계점 및 향후 계획 
 연구 한계점
