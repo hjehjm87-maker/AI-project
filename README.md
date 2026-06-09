@@ -22,7 +22,7 @@ Road Damage Detection and Augmentation Analysis using YOLO11
 * **핵심 프레임워크:** `Ultralytics YOLO11`
 * **의존성 라이브러리:** `Torch`, `OpenCV-Python`, `PyYAML`, `Matplotlib`
 
-### 개발 환경 구축 및 의존성 설치
+## 개발 환경 구축 및 의존성 설치
 # 구글 코랩 환경 필수 패키지 및 라이브러리 일괄 설치
 pip install ultralytics python-dotenv opencv-python
 
