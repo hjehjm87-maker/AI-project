@@ -89,13 +89,23 @@ model_2.train(
     name="yolo11n_augmentation"
     
 3차 실험 [Scale-up]
-복합적인 환경과 이온 처리 성능을 극대화하기 위해 사용자가 더 확장된 YOLO11s (Small)모델로 규모를 확장하고, 하이퍼파라미터 최적화와 함께 100 Epochs의 장기적 성능을 수행
+복합적인 공간 환경의 특징을 추출하고 고려하여 성능을 극대화하기 위해 모델 크기를 확장합니다. 더욱 무겁고 표현력이 좋은 YOLO11s(소형) 모델을 기반으로 하이퍼파라미터 최적화와 함께 100 Epochs의 장기 학습을 수행
+
+Scale-up: YOLO11s 모델 확장 및 100 Epochs 장기 학습
+model_3 = YOLO("yolo11s.yaml")
+model_3.train(
+    data="data.yaml", 
+    epochs=100, 
+    batch=16, 
+    imgsz=640, 
+    name="yolo11s_scale_up"
+)
 
 비디오 인퍼런스 및 추적(Tracking) 알고리즘
 연속적인 프레임 환경에서의 탐지 누락을 방지하기 위해 학습 완료된 가중치 파일(best.pt)을 활용하여 실제 도로 주행 영상(맑은날.mp4)에 인퍼런스를 연동
 프레임 연속성을 고려한 ByteTrack 추적 알고리즘을 결합하여 동일 파손 영역의 중복 카운트를 방지하고 추적 안정성을 확보
 
-### ByteTrack 알고리즘 연동 실시간 주행 영상 객체 추적 추론
+ByteTrack 알고리즘 연동 실시간 주행 영상 객체 추적 추론
 best_model = YOLO("/content/drive/MyDrive/프로젝트 4조/Road/weights/best.pt")
 results = best_model.track(
     source="/content/drive/MyDrive/프로젝트 4조/맑은날.mp4", 
