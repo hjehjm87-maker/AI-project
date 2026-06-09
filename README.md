@@ -40,6 +40,8 @@ nc: 3
 names: ['Pothole', 'Crack', 'Manhole']
 
 ### 수립된 데이터셋 로컬 디렉토리 구조
+
+```text
 /content/drive/MyDrive/프로젝트 4조/Road/dataset/
 ├── data.yaml
 ├── images/
@@ -48,6 +50,7 @@ names: ['Pothole', 'Crack', 'Manhole']
 └── labels/
     ├── train/ (1,607개 .txt)
     └── val/   (402개 .txt)
+```
 
 ## 4. 모델 설명 및 개발 내용
 1차 실험 [Baseline]:가장 가벼운 YOLO11n (Nano)모델을 기반으로 하는 분석 처리 없이 기본 전 처리 데이터셋만 사용하여 50 Epochs 모델 학습을 연구하고 기준 지표를 제공
