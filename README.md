@@ -22,8 +22,8 @@ Road Damage Detection and Augmentation Analysis using YOLO11
 * **핵심 프레임워크:** `Ultralytics YOLO11`
 * **의존성 라이브러리:** `Torch`, `OpenCV-Python`, `PyYAML`, `Matplotlib`
 
-## 개발 환경 구축 및 의존성 설치
-# 구글 코랩 환경 필수 패키지 및 라이브러리 일괄 설치
+### 개발 환경 구축 및 의존성 설치
+구글 코랩 환경 필수 패키지 및 라이브러리 일괄 설치
 pip install ultralytics python-dotenv opencv-python
 
 ## 3.데이터 세트
@@ -73,7 +73,7 @@ model_1.train(
 
 2차 실험 [Augmentation]:약간의 상황이 발생할 수 있는 노면의 조도 및 스윙을 모사하기 위해 YOLO11n모델에 광학적 변형(명도 hsv_v=0.6, 채도 hsv_s=0.5) 및 각도 변형(회전 degrees=10.0, 전위 이동 translate=0.2) 가능성을 적용하여 50 Epochs 확장을 진행
 
-# Augmentation: 조도 변화 및 가혹 주행 환경 모사를 위한 증강 파라미터 적용
+### Augmentation: 조도 변화 및 가혹 주행 환경 모사를 위한 증강 파라미터 적용
 model_2 = YOLO("yolo11n.yaml")
 model_2.train(
     data="data.yaml", 
@@ -92,7 +92,7 @@ model_2.train(
 연속적인 프레임 환경에서의 탐지 누락을 방지하기 위해 학습 완료된 가중치 파일(best.pt)을 활용하여 실제 도로 주행 영상(맑은날.mp4)에 인퍼런스를 연동
 프레임 연속성을 고려한 ByteTrack 추적 알고리즘을 결합하여 동일 파손 영역의 중복 카운트를 방지하고 추적 안정성을 확보
 
-# ByteTrack 알고리즘 연동 실시간 주행 영상 객체 추적 추론
+### ByteTrack 알고리즘 연동 실시간 주행 영상 객체 추적 추론
 best_model = YOLO("/content/drive/MyDrive/프로젝트 4조/Road/weights/best.pt")
 results = best_model.track(
     source="/content/drive/MyDrive/프로젝트 4조/맑은날.mp4", 
