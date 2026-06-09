@@ -22,12 +22,26 @@ Road Damage Detection and Augmentation Analysis using YOLO11
 ## 3.데이터 세트
 데이터셋 가공 및 분할 구조
 원본 데이터 가공: 도로 전경 데이터에서 이미지 품질을 높이기 위해 파손 의심 영역을 정밀하게 크롭(Crop) 및 라벨링하여 데이터 완성도를 고도화
-데이터셋 분할: 원본 데이터 총 2,009장을 Train(8) : Validation(2) 비율로 분할하여 독립적인 검증 환경을 구축
+데이터셋 분할: 원본 데이터 총 2,009장을 Train(80%) : Validation(20%) 비율로 분할하여 독립적인 검증 환경을 구축
 
 Train Dataset: 1,607장 (이미지 및 라벨 텍스트 매칭 완료)
 Validation Dataset: 402장
 
+데이터 구성 정의
+path: /content/drive/MyDrive/프로젝트 4조/Road/dataset
+train: images/train
+val: images/val
+
+nc: 3
+names: ['Pothole', 'Crack', 'Manhole']
+
 ## 4. 모델 설명 및 개발 내용
+├── 1차 실험 [Baseline] 
+│   └── YOLO11n (Nano) 모델 활용 / 기본 데이터셋 / 50 Epochs 학습
+├── 2차 실험 [Augmentation Pipeline]
+│   └── YOLO11n 모델 + 명도 조절(hsv_v=0.6), 채도 조절(hsv_s=0.5), 미세 회전(degrees=10.0), 평행 이동(translate=0.2) 적용 / 50 Epochs 학습
+└── 3차 실험 [Scale-up Model]
+    └── YOLO11s (Small)로 모델 확장 + 가중치 파라미터 최적화 / 100 Epochs 장기 학습
 1차 실험 [Baseline]: YOLO11n (Nano) 모델 / 기본 데이터셋 / 50 Epochs 학습
 2차 실험 [Augmentation]: YOLO11n (Nano) 모델 + 명도 조절(hsv_v=0.6), 채도 조절(hsv_s=0.5), 미세 회전(degrees=10.0), 평행 이동(translate=0.2) 적용 / 50 Epochs 학습
 3차 실험 [Scale-up]: YOLO11s (Small)로 가중치 모델 크기 확장 + 파라미터 최적화 / 100 Epochs 장기 학습
